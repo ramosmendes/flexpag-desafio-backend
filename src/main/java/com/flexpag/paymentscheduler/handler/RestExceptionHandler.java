@@ -18,9 +18,10 @@ public class RestExceptionHandler {
 	@ExceptionHandler(PaidPaymentException.class)
 	public Map<String, String> finishedPaymentException(PaidPaymentException ex) {
 		Map<String, String> erros = new HashMap<>();
-		erros.put("DateTime", LocalDateTime.now().toString());
+		erros.put("Step", HttpStatus.BAD_REQUEST.toString());
+		erros.put("Data ", LocalDateTime.now().toString());
 		erros.put("Message", ex.getMessage());
-		erros.put("Status", HttpStatus.BAD_REQUEST.toString());
+
 		return erros;
 	}
 
@@ -28,9 +29,9 @@ public class RestExceptionHandler {
 	@ExceptionHandler(IdNotFoundException.class)
 	public Map<String, String> idNotFoundException(IdNotFoundException ex) {
 		Map<String, String> erros = new HashMap<>();
-		erros.put("DateTime", LocalDateTime.now().toString());
+		erros.put("Step", HttpStatus.BAD_REQUEST.toString());
+		erros.put("Data ", LocalDateTime.now().toString());
 		erros.put("Message", ex.getMessage());
-		erros.put("Status", HttpStatus.NOT_FOUND.toString());
 		return erros;
 	}
 
