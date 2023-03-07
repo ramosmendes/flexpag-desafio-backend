@@ -1,5 +1,7 @@
 package com.flexpag.paymentscheduler.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +28,11 @@ public class PaymentSchedulerController {
 	@PostMapping
 	public ResponseEntity<Long> insert(@RequestBody PaymentScheduler payment) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.insert(payment));
+	}
+
+	@GetMapping
+	public ResponseEntity<List<PaymentScheduler>> findAll() {
+		return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
 	}
 
 	@GetMapping("/{id}/step")

@@ -1,6 +1,6 @@
 package com.flexpag.paymentscheduler.model.entities;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,12 +30,12 @@ public class PaymentScheduler {
 	private Long id;
 
 	@Getter
-	@Column(name = "value_payment")
+	@Column(name = "value_payment", nullable = false)
 	private Double value;
 
 	@Getter
-	@Column(name = "appointment_date")
-	private LocalDateTime date;
+	@Column(name = "appointment_date", nullable = false)
+	private LocalDate date;
 
 	@Enumerated(EnumType.STRING)
 	@Getter

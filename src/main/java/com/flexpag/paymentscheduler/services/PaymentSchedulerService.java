@@ -16,7 +16,7 @@ public class PaymentSchedulerService {
 
 	@Autowired
 	private PaymentSchedulerRepository paymentSchedulerRepository;
-	
+
 	public List<PaymentScheduler> findAll() {
 		return paymentSchedulerRepository.findAll();
 	}

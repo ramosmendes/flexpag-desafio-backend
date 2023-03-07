@@ -1,6 +1,7 @@
 package com.flexpag.paymentscheduler.handler;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,25 +15,25 @@ import com.flexpag.paymentscheduler.model.exceptions.PaidPaymentException;
 
 @RestControllerAdvice
 public class RestExceptionHandler {
+
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(PaidPaymentException.class)
-	public Map<String, String> finishedPaymentException(PaidPaymentException ex) {
-		Map<String, String> erros = new HashMap<>();
-		erros.put("Step", HttpStatus.BAD_REQUEST.toString());
-		erros.put("Data ", LocalDateTime.now().toString());
-		erros.put("Message", ex.getMessage());
-
-		return erros;
+	public Map<String, String> paidPaymentException(PaidPaymentException ex) {
+		Map<String, String> error = new HashMap<>();
+		error.put("Error date",
+				LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")).toString());
+		error.put("Message", ex.getMessage());
+		return error;
 	}
 
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	@ExceptionHandler(IdNotFoundException.class)
 	public Map<String, String> idNotFoundException(IdNotFoundException ex) {
-		Map<String, String> erros = new HashMap<>();
-		erros.put("Step", HttpStatus.BAD_REQUEST.toString());
-		erros.put("Data ", LocalDateTime.now().toString());
-		erros.put("Message", ex.getMessage());
-		return erros;
+		Map<String, String> error = new HashMap<>();
+		error.put("Error date",
+				LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")).toString());
+		error.put("Message", ex.getMessage());
+		return error;
 	}
 
 }
